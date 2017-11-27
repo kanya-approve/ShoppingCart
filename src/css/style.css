@@ -1,0 +1,9 @@
+.overlay {
+	opacity: 0;
+	z-index: 100;
+	transition: .5s ease;
+}
+
+.product:hover .overlay {
+	opacity: 1;
+}
