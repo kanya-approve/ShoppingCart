@@ -1,28 +1,48 @@
-'use strict';
-
 class Cart {
-  constructor(taxRate, subtotal, paymentMethod) {
+  constructor(taxRate) {
     this.taxRate = taxRate;
     this.subtotal = 0;
     this.paymentMethod = "";
     this.products = [];
   }
-
-  total() {
-    return this.subtotal + this.taxRate;
+  
+  get total() {
+    return this.calcTotal();
   }
 
-  numberOfProducts() {
+  calcTotal() {
+    return accounting.formatMoney(this.subtotal * (1 + this.taxRate));
+  }
+  
+  get numberOfProducts() {
+    return this.countProducts();
+  }
+
+  countProducts() {
     return this.products.length;
   }
 
-  removeProduct(index) {
-    var removedProduct = this.products.splice(index).shift();
-    this.subtotal = this.subtotal - removedProduct.price;
+  removeProduct(index, quantity) {
+    if(this.products[index]) {
+      this.products[index].quantity = this.products[index].quantity - quantity;
+      
+      if(this.products[index].quantity > 0) {
+        this.products[index].quantity = this.products[index].quantity;
+      }
+      else {
+        this.products[index] = null;
+      }
+    }
   }
 
-  addProduct(product) {
-    this.products.push(product);
-    this.subtotal = this.subtotal + product.price;
+  addProduct(index) {
+    if(this.products[index]) {
+      this.products[index].quantity = this.products[index].quantity + 1;
+      this.subtotal = this.subtotal + flowers[index].price;
+    }
+    else {
+      this.products[index] = flowers[index];
+      this.subtotal = this.subtotal + flowers[index].price;
+    }
   }
 }
