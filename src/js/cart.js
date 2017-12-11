@@ -22,23 +22,26 @@ class Cart {
     return this.products.length;
   }
 
-  removeProduct(index, quantity) {
+  setProductQuantity(index, quantity) {
     if(this.products[index]) {
-      this.products[index].quantity = this.products[index].quantity - quantity;
-      
-      if(this.products[index].quantity > 0) {
-        this.products[index].quantity = this.products[index].quantity;
+      if(quantity) {
+        if(this.products[index].quantity > quantity) {
+          this.subtotal = this.subtotal - (this.products[index].quantity - quantity) * this.products[index].price;
+          this.products[index].quantity = quantity;
+        }
+        else if(this.products[index].quantity < quantity) {
+          this.subtotal = this.subtotal + (quantity - this.products[index].quantity) * this.products[index].price;
+          this.products[index].quantity = quantity;
+        }
       }
-      else {
+      else if(quantity === 0) {
+        this.subtotal = this.subtotal - this.products[index].quantity * this.products[index].price;
         this.products[index] = null;
       }
-    }
-  }
-
-  addProduct(index) {
-    if(this.products[index]) {
-      this.products[index].quantity = this.products[index].quantity + 1;
-      this.subtotal = this.subtotal + flowers[index].price;
+      else {
+        this.subtotal = this.subtotal + this.products[index].price;
+        this.products[index].quantity = this.products[index].quantity + 1;
+      }
     }
     else {
       this.products[index] = flowers[index];
