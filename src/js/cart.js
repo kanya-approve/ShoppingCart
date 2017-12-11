@@ -2,7 +2,11 @@ class Cart {
   constructor(taxRate) {
     this.taxRate = taxRate;
     this.subtotal = 0;
-    this.paymentMethod = "";
+    this.products = [];
+  }
+
+  clearCart() {
+    this.subtotal = 0;
     this.products = [];
   }
   
