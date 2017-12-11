@@ -5,7 +5,7 @@ class Cart {
     this.products = [];
   }
 
-  clearCart() {
+  clear() {
     this.subtotal = 0;
     this.products = [];
   }

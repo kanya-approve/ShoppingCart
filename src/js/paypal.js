@@ -30,7 +30,9 @@ paypal.Button.render({
 
     onAuthorize: function (data, actions) {
         return actions.payment.execute().then(function(payment) {
-            alert("Payment of flowers completed");
+            alert("Payment of flowers complete");
+            $('#cartModal').modal('hide');
+            cart.clear();
         })
     }
 }, "#paypal-button");
