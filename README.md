@@ -1,7 +1,7 @@
 # ShoppingCart
 Ramaswamy Shopping Cart
 
-https://bkanya.me/ShoppingCart/
+https://bkanya.me/Sites/ShoppingCart/
 
 https://briankanya.github.io/ShoppingCart/dist/
 
