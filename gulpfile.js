@@ -6,7 +6,7 @@ var htmlmin = require('gulp-htmlmin');
 var gutil = require('gulp-util');
 	
 gulp.task('css', function() {
-    gulp.src([
+    return gulp.src([
             './src/css/**/*.css'
         ])
         .pipe(minifyCSS())
@@ -15,7 +15,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src([
+    return gulp.src([
             './src/js/**/*.js'
         ])
         .pipe(uglify())
@@ -25,7 +25,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('fonts', function() {
-    gulp.src([
+    return gulp.src([
             './src/fonts/*.otf',
 			'./src/fonts/*.eot',
 			'./src/fonts/*.svg',
@@ -37,7 +37,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('html', function() {
-	gulp.src([
+	return gulp.src([
             './src/*.html'
         ])
         .pipe(htmlmin({collapseWhitespace: true}))
@@ -45,18 +45,17 @@ gulp.task('html', function() {
 });
 
 gulp.task('images', function() {
-    gulp.src([
+    return gulp.src([
             './src/img/**/*'
         ])
         .pipe(gulp.dest('./dist/img'));
 });
 
 gulp.task('extra', function() {
-    gulp.src([
-            './src/favicon.ico',
-			'./src/.htaccess'
+    return gulp.src([
+            './src/favicon.ico'
         ])
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('default', ['css', 'js', 'html', 'fonts', 'images', 'extra']);
+gulp.task('default', gulp.parallel('css', 'js', 'html', 'fonts', 'images', 'extra'));
