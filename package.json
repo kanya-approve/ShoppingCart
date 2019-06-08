@@ -1,14 +1,14 @@
 {
   "dependencies": {
-    "gulp-clean-css": "^3.10.0",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-uglify-es": "^1.0.4",
     "gulp-util": "^3.0.8"
   },
   "devDependencies": {
-    "graceful-fs": "^4.1.11",
-    "gulp": "^4.0.0",
+    "graceful-fs": "^4.1.15",
+    "gulp": "^4.0.2",
     "minimatch": "^3.0.4"
   }
 }
